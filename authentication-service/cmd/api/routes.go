@@ -19,8 +19,10 @@ func (app *Config) routes() http.Handler{
 		AllowCredentials: true,
 		MaxAge: 300,
 	}))
-
+ 
 	router.Use(middleware.Heartbeat("/ping"))
+
+	router.Post("/authenticate", app.Authenticate)
 
 	return router
 }
